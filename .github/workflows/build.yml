@@ -36,16 +36,16 @@ jobs:
 
       - name: Verify Build Output
         run: |
-          if [ ! -d "build" ]; then
-            echo "ERROR: Build directory not found"
+          if [ ! -d "dist" ]; then
+            echo "ERROR: Dist directory not found"
             exit 1
           fi
           echo "SUCCESS: Build directory verified for session ${{ inputs.build_session_id }}"
-          ls -lah build/ | head -10
+          ls -lah dist/ | head -10
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.artifact_name }}
-          path: build/
+          path: dist/
           retention-days: 7
